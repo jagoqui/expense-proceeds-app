@@ -3,14 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class StatisticsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -4,16 +4,8 @@ import { StadiComponent } from './components/stadi/stadi.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { DetailComponent } from './components/detail/detail.component';
 
-
-
 @NgModule({
-  declarations: [
-    StadiComponent,
-    StatisticsComponent,
-    DetailComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [StadiComponent, StatisticsComponent, DetailComponent],
+  imports: [CommonModule],
 })
-export class ExpenseProceedsModule { }
+export class ExpenseProceedsModule {}
