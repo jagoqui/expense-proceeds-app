@@ -37,8 +37,9 @@
             </div>
 
             <div class="form-group">
-              <button [disabled]="registerForm?.invalid" class="btn btn-primary submit-btn btn-block" type="submit">
-                Crear cuenta
+              <button [disabled]="registerForm.invalid || loading" class="btn btn-primary submit-btn btn-block">
+                <ng-container *ngIf="!loading; else loadingButton">Crear cuenta</ng-container>
+                <ng-template #loadingButton><i class="fa fa-spin fa-sync"></i>Espere...</ng-template>
               </button>
             </div>
             <div class="text-block text-center my-3">

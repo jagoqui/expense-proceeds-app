@@ -10,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './aap.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent],
@@ -19,11 +22,17 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AuthModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true // Pauses recording actions and state changes when the extension window is not open
+    }),
     AngularFireModule,
     AngularFireAuthModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
