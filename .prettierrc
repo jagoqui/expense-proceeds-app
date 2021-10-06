@@ -1,7 +1,8 @@
 {
-  "singleQuote": true,
-  "arrow-body-style": "off",
-  "prefer-arrow-callback": "off",
+  "singleQuote":true,
+  "trailingComma": "none",
+  "arrow-body-style": "true",
+  "prefer-arrow-callback": "true",
   "printWidth": 120,
   "overrides": [
     {

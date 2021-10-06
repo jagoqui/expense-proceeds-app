@@ -11,10 +11,10 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-//        "airbnb-typescript/base", // optional
+//        "airbnb-typescript/base",
         "prettier"
       ],
-      "plugins": ["prettier"],
+      "plugins": ["prettier", "unused-imports"],
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
@@ -32,8 +32,28 @@
             "style": "kebab-case"
           }
         ],
-        "import/prefer-default-export": "off", // if using airbnb
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        // if using airbnb
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/lines-between-class-members": "off",
+        //Auto remove unused imports
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "varsIgnorePattern": "^_",
+            "args": "after-used",
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        //Sort imports
+        "sort-imports": [
+          "error",
+          {
+            "ignoreDeclarationSort": true
+          }
+        ]
       }
     },
     {

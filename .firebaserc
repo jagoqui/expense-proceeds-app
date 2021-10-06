@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "expense-proceeds-app": {
+      "hosting": {
+        "expense-proceeds-app": [
+          "expense-proceeds-app"
+        ]
+      }
+    }
+  }
+}
