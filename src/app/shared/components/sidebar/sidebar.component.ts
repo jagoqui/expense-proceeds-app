@@ -1,40 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import Swal from 'sweetalert2';
+import SweetAlert from 'sweetalert2';
+
+import { AppState } from 'src/app/aap.reducer';
+import { Store } from '@ngrx/store';
+import { Subject } from 'rxjs';
+import { User } from '../../models/user.model';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styles: [],
+  styles: []
 })
-export class SidebarComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router) {}
+export class SidebarComponent implements OnInit, OnDestroy {
+  userLogged: User | null | undefined;
+  private destroy$ = new Subject<any>();
+
+  constructor(private auth: AuthService, private router: Router, private storeSvc: Store<AppState>) {}
 
   onLogout() {
     if (confirm('Está seguro que desea cerrar sesión?')) {
-      Swal.fire({
+      SweetAlert.fire({
         title: 'Espere por favor',
         timerProgressBar: true,
         didOpen: () => {
-          Swal.showLoading();
-        },
+          SweetAlert.showLoading();
+        }
       }).then();
       this.auth
         .logout()
         .then(() => {
-          Swal.close();
+          SweetAlert.close();
           this.router.navigate(['/login']).then();
         })
         .catch((error) => {
-          Swal.fire({
+          SweetAlert.fire({
             icon: 'error',
             title: 'Oops...',
-            text: error.message,
+            text: error.message
           }).then();
         });
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.storeSvc
+      .select('auth')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(({ user }) => (this.userLogged = user));
+  }
+  ngOnDestroy() {
+    this.destroy$.next({});
+    this.destroy$.complete();
+  }
 }

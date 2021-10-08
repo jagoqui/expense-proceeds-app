@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Agregar Ingreso / Egreso</h4>
+        <p class="card-description">Especifique el monto y el tipo</p>
+
+        <form (ngSubmit)="onSave()" [formGroup]="expenseProceedsForm">
+          <div class="form-group">
+            <label>Descripción</label>
+            <input
+              class="form-control"
+              formControlName="description"
+              name="descripcion"
+              placeholder="Descripción"
+              type="text"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Monto</label>
+            <input class="form-control" formControlName="mount" name="monto" placeholder="Monto" type="number" />
+            <p>Debe de ser un monto positivo</p>
+          </div>
+
+          <div class="form-group">
+            <label>Tipo</label>
+            <br />
+            <button
+              (click)="toggleType()"
+              [class]="mountType === 'expense' ? 'btn-warning' : 'btn-primary'"
+              class="btn btn-block"
+              type="button"
+            >
+              {{ mountType === 'expense' ? 'Egreso' : 'Ingreso' }}
+            </button>
+          </div>
+
+          <hr />
+          <button [disabled]="expenseProceedsForm?.invalid || loading" class="btn btn-success mr-2" type="submit">
+            <i [class]="loading ? 'fa-spin fa-sync' : 'fa-save'" class="fa"></i>
+            <ng-container *ngIf="!loading; else loadingButton">Agregar</ng-container>
+            <ng-template #loadingButton>Guardando...</ng-template>
+          </button>
+
+          <!--
+            <button disabled class="btn btn-success mr-2">
+              <i class="fa fa-spin fa-sync"></i>
+              Espere por favor...
+            </button>
+          -->
+
+          <button class="btn btn-light" type="reset">Cancelar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../aap.reducer';
 import { setUser, unsetUser } from '../redux/auth.actions';
+import { unsetItems } from '../../items/redux/items.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,12 @@ export class AuthService {
   userSubscription: Subscription | undefined;
 
   constructor(private auth: AngularFireAuth, public firestore: AngularFirestore, private storeSvc: Store<AppState>) {}
+
+  private _user: User | null = null;
+
+  get user() {
+    return { ...this._user };
+  }
 
   initAuthListeners() {
     this.auth.authState.subscribe((firebaseUser) => {
@@ -25,10 +32,13 @@ export class AuthService {
           .valueChanges()
           .subscribe((firestoreUser) => {
             const user = User.fromFirestore(firestoreUser);
+            this._user = user;
             this.storeSvc.dispatch(setUser({ user }));
           });
       } else {
+        this._user = null;
         this.storeSvc.dispatch(unsetUser());
+        this.storeSvc.dispatch(unsetItems());
         this.userSubscription?.unsubscribe();
       }
     });

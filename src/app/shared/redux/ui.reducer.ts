@@ -5,7 +5,7 @@ export interface UIState {
   isLoading: boolean;
 }
 
-export const initialState: UIState = {
+const initialState: UIState = {
   isLoading: false
 };
 
