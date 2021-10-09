@@ -30,7 +30,7 @@
           <div class="float-right">
             <p class="mb-0 text-right">Egresos</p>
             <div class="fluid-container">
-              <h3 class="font-weight-medium text-right mb-0">{{ totalExpenses }}</h3>
+              <h3 class="font-weight-medium text-right mb-0">{{ totalExpenses | currency }}</h3>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
             <p class="mb-0 text-right">Diferencia</p>
             <div class="fluid-container">
               <h3
-                [ngClass]="totalProceeds - totalExpenses > 0 ? 'text-success' : 'text-danger'"
+                [ngClass]="totalProceeds - totalExpenses >= 0 ? 'text-success' : 'text-danger'"
                 class="font-weight-medium text-right mb-0"
               >
                 {{ totalProceeds - totalExpenses | currency }}

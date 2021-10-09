@@ -10,11 +10,11 @@ import { takeUntil } from 'rxjs/operators';
 import { isLoading, stopLoading } from '../../../shared/redux/ui.actions';
 
 @Component({
-  selector: 'app-expense-proceeds',
-  templateUrl: './items.component.html',
+  selector: 'app-add-item',
+  templateUrl: './add-item.component.html',
   styles: []
 })
-export class ItemsComponent implements OnInit, OnDestroy {
+export class AddItemComponent implements OnInit, OnDestroy {
   expenseProceedsForm: FormGroup;
   loading: boolean = false;
   private destroy$ = new Subject<any>();

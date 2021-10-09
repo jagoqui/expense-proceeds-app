@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
-import { StatisticsComponent } from '../items/components/statistics/statistics.component';
-import { ItemsComponent } from '../items/components/items/items.component';
-import { DetailComponent } from '../items/components/detail/detail.component';
+import { ItemStatisticsComponent } from './components/item-statistics/item-statistics.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
+import { ItemsListComponent } from './components/items-list/items-list.component';
 
 export const dashboardRoutes: Routes = [
   {
     path: '',
-    component: StatisticsComponent
+    component: ItemStatisticsComponent
   },
   {
     path: 'expense-proceeds',
-    component: ItemsComponent
+    component: AddItemComponent
   },
   {
     path: 'detail',
-    component: DetailComponent
+    component: ItemsListComponent
   }
 ];

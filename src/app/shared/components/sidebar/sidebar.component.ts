@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
         .logout()
         .then(() => {
           SweetAlert.close();
+          //TODO: Eliminar nodo de los items del Store
           this.router.navigate(['/login']).then();
         })
         .catch((error) => {

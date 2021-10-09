@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../aap.reducer';
+import { AppState } from '../../../aap.reducer';
 import { Subject } from 'rxjs';
-import { ItemService } from '../items/services/item.service';
+import { ItemService } from '../../services/item.service';
 import { takeUntil } from 'rxjs/operators';
-import { setItems } from '../items/redux/items.actions';
+import { setItems } from '../../redux/items.actions';
 
 @Component({
   selector: 'app-dashboard',

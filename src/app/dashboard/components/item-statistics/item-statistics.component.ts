@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState } from 'src/app/aap.reducer';
 import { Store } from '@ngrx/store';
 import { Item } from '../../../shared/models/expense-proceeds.model';
 import { Label } from 'ng2-charts';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { ItemsStateLazy } from '../../../aap.reducer';
 
 @Component({
-  selector: 'app-statistics',
-  templateUrl: './statistics.component.html',
+  selector: 'app-item-statistics',
+  templateUrl: './item-statistics.component.html',
   styles: []
 })
-export class StatisticsComponent implements OnInit {
+export class ItemStatisticsComponent implements OnInit {
   numExpenses: number = 0;
   numProceeds: number = 0;
   totalExpenses: number = 0;
@@ -23,7 +23,7 @@ export class StatisticsComponent implements OnInit {
     responsive: true
   };
 
-  constructor(private storeSvc: Store<AppState>) {}
+  constructor(private storeSvc: Store<ItemsStateLazy>) {}
 
   staticsGenerate(items: Item[]) {
     this.numExpenses = 0;
@@ -39,7 +39,7 @@ export class StatisticsComponent implements OnInit {
         this.numProceeds++;
       }
     }
-    this.chartDataSets = [{ data: [this.totalProceeds, this.totalExpenses], label: 'Ingresos' }];
+    this.chartDataSets = [{ data: [this.totalExpenses, this.totalProceeds] }];
   }
 
   ngOnInit(): void {

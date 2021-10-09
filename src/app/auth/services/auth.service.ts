@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../aap.reducer';
 import { setUser, unsetUser } from '../redux/auth.actions';
-import { unsetItems } from '../../items/redux/items.actions';
+import { unsetItems } from '../../dashboard/redux/items.actions';
 
 @Injectable({
   providedIn: 'root'

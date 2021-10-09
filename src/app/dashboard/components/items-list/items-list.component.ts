@@ -1,22 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AppState } from 'src/app/aap.reducer';
 import { Store } from '@ngrx/store';
 import { Item } from '../../../shared/models/expense-proceeds.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ItemService } from '../../services/item.service';
 import SweetAlert from 'sweetalert2';
+import { ItemsStateLazy } from '../../../aap.reducer';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
+  selector: 'app-items-list',
+  templateUrl: './items-list.component.html',
   styles: []
 })
-export class DetailComponent implements OnInit, OnDestroy {
+export class ItemsListComponent implements OnInit, OnDestroy {
   items: Item[] = [];
   private destroy$ = new Subject<any>();
 
-  constructor(private storeSvc: Store<AppState>, private itemSvc: ItemService) {}
+  constructor(private storeSvc: Store<ItemsStateLazy>, private itemSvc: ItemService) {}
 
   onDelete(uid?: string) {
     if (!uid) {
