@@ -7,6 +7,6 @@ export const environment = {
     storageBucket: 'expense-proceeds-app.appspot.com',
     messagingSenderId: '421148379192',
     appId: '1:421148379192:web:d087dc95631eadf3a97ecd',
-    measurementId: 'G-9D7030NEJ6',
-  },
+    measurementId: 'G-9D7030NEJ6'
+  }
 };

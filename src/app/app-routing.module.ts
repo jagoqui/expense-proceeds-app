@@ -10,14 +10,13 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: '',
-    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-    // canActivate: [AuthGuard],
-    canLoad: [AuthGuard]
-  },
-  {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: '',
+    loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+    canLoad: [AuthGuard]
   },
   {
     path: '**',
